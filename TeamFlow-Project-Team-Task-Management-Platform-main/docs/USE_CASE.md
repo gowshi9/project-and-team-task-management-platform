@@ -6,6 +6,35 @@ flowchart TB
   PM((Project Manager))
   Member((Team Member))
 
+  Admin -->|Manages| Users[Manage Users]
+  Admin -->|Configures| System[Configure System]
+
+  PM -->|Creates| Project[Create Project]
+  PM -->|Assigns| Tasks[Assign Tasks]
+  PM -->|Tracks| Progress[Track Progress]
+
+  Member -->|Views| ViewTasks[View Tasks]
+  Member -->|Updates| UpdateTask[Update Task Status]
+  Member -->|Comments| Comment[Comment on Tasks]
+```
+
+*Illustrates the primary interactions of each role within the system.*
+
+## Role summary
+
+| Actor | Primary goals |
+|-------|----------------|
+| Administrator | Full system control: users, roles, all projects/tasks |
+| Project Manager | Own projects, membership, task planning |
+| Team Member | Execute assigned work and report progress |
+
+
+```mermaid
+flowchart TB
+  Admin((Administrator))
+  PM((Project Manager))
+  Member((Team Member))
+
   subgraph system [TeamFlow System]
     UC1[Login]
     UC2[Manage users and roles]
