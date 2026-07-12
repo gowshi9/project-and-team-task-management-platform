@@ -2,7 +2,7 @@
 
 ```mermaid
 flowchart TD
-    subgraph Frontend[Frontend (Next.js)]
+    subgraph Frontend ["Frontend (Next.js)"]
         FE[React Components]
     end
     subgraph Backend[Backend (Node.js/Express)]

@@ -19,7 +19,3 @@ flowchart TB
 ```
 
 *Illustrates the primary interactions of each role within the system.*
-
-
-
-*Illustrates the primary interactions of each role within the system.*
