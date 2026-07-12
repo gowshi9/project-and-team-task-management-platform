@@ -32,7 +32,7 @@ TeamFlow is a web‑based platform that streamlines project and task management 
 - [Feature Completion Report](docs/FEATURE_COMPLETION_REPORT.md)
 - [CI/CD Workflow Explanation](docs/CICD.md)
 - [AI Tools Usage Disclosure](docs/AIDisclosure.md)
-- [Setup & Run Guide](docs/Setup.md)
+- [Setup & Run Guide](docs/SETUP_MYSQL.md)
 
 ## Prerequisites & Local Setup
 1. Install **Node.js** (v18+) and **npm**.
