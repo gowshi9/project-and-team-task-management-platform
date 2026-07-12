@@ -1,0 +1,14 @@
+{
+  "name": "teamflow",
+  "private": true,
+  "version": "1.0.0",
+  "description": "TeamFlow – Project & Team Task Management Platform",
+  "scripts": {
+    "dev:backend": "npm --prefix backend run dev",
+    "dev:frontend": "npm --prefix frontend run dev",
+    "build:backend": "npm --prefix backend run build",
+    "build:frontend": "npm --prefix frontend run build",
+    "test": "npm --prefix backend test",
+    "lint": "npm --prefix backend run lint && npm --prefix frontend run lint"
+  }
+}
