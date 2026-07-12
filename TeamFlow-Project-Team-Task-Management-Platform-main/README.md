@@ -26,11 +26,11 @@ TeamFlow is a web‑based platform that streamlines project and task management 
 
 ## Documentation Index
 - [Entity Relationship Diagram (ERD)](docs/ERD.md)
-- [Use Case Diagram](docs/UseCase.md)
-- [System Architecture Diagram](docs/Architecture.md)
+- [Use Case Diagram](docs/USE_CASE.md)
+- [System Architecture Diagram](docs/ARCHITECTURE.md)
 - [API Documentation](docs/API.md)
-- [Feature Completion Report](docs/FeatureReport.md)
-- [CI/CD Workflow Explanation](docs/CI_CD.md)
+- [Feature Completion Report](docs/FEATURE_COMPLETION_REPORT.md)
+- [CI/CD Workflow Explanation](docs/CICD.md)
 - [AI Tools Usage Disclosure](docs/AIDisclosure.md)
 - [Setup & Run Guide](docs/Setup.md)
 
