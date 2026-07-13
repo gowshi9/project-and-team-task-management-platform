@@ -1,4 +1,4 @@
-import { Router } from "express";
+import { Router, Request, Response, NextFunction } from "express";
 import { Role, TaskStatus } from "@prisma/client";
 import { prisma } from "../lib/prisma";
 import {
@@ -25,7 +25,7 @@ const taskInclude = {
   _count: { select: { comments: true } },
 } as const;
 
-router.get("/", async (req, res, next) => {
+router.get("/", async (req: Request, res: Response, next: NextFunction) => {
   try {
     const user = req.user!;
     const { projectId, status, assigneeId, priority, q } = req.query;
@@ -86,7 +86,7 @@ router.get("/", async (req, res, next) => {
   }
 });
 
-router.get("/:id", async (req, res, next) => {
+router.get("/:id", async (req: Request, res: Response, next: NextFunction) => {
   try {
     const task = await prisma.task.findUnique({
       where: { id: req.params.id },
@@ -116,7 +116,7 @@ router.get("/:id", async (req, res, next) => {
 router.post(
   "/",
   authorize(Role.ADMIN, Role.PROJECT_MANAGER),
-  async (req, res, next) => {
+  async (req: Request, res: Response, next: NextFunction) => {
     try {
       const input = createTaskSchema.parse(req.body);
       await assertProjectAccess(req.user!, input.projectId, { requireManage: true });
@@ -171,7 +171,7 @@ router.post(
   }
 );
 
-router.patch("/:id", async (req, res, next) => {
+router.patch("/:id", async (req: Request, res: Response, next: NextFunction) => {
   try {
     const existing = await prisma.task.findUnique({ where: { id: req.params.id } });
     if (!existing) throw new AppError("Task not found", 404);
@@ -258,7 +258,7 @@ router.patch("/:id", async (req, res, next) => {
 router.delete(
   "/:id",
   authorize(Role.ADMIN, Role.PROJECT_MANAGER),
-  async (req, res, next) => {
+  async (req: Request, res: Response, next: NextFunction) => {
     try {
       const existing = await prisma.task.findUnique({ where: { id: req.params.id } });
       if (!existing) throw new AppError("Task not found", 404);
@@ -271,7 +271,7 @@ router.delete(
   }
 );
 
-router.post("/:id/comments", async (req, res, next) => {
+router.post("/:id/comments", async (req: Request, res: Response, next: NextFunction) => {
   try {
     const task = await prisma.task.findUnique({ where: { id: req.params.id } });
     if (!task) throw new AppError("Task not found", 404);

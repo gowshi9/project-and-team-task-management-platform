@@ -1,4 +1,4 @@
-import { Router } from "express";
+import { Router, Request, Response, NextFunction } from "express";
 import { Role } from "@prisma/client";
 import { prisma } from "../lib/prisma";
 import {
@@ -29,7 +29,7 @@ const projectInclude = {
   _count: { select: { tasks: true } },
 } as const;
 
-router.get("/", async (req, res, next) => {
+router.get("/", async (req: Request, res: Response, next: NextFunction) => {
   try {
     const user = req.user!;
     let projects;
@@ -64,7 +64,7 @@ router.get("/", async (req, res, next) => {
   }
 });
 
-router.get("/:id", async (req, res, next) => {
+router.get("/:id", async (req: Request, res: Response, next: NextFunction) => {
   try {
     await assertProjectAccess(req.user!, req.params.id);
     const project = await prisma.project.findUnique({
@@ -93,7 +93,7 @@ router.get("/:id", async (req, res, next) => {
 router.post(
   "/",
   authorize(Role.ADMIN, Role.PROJECT_MANAGER),
-  async (req, res, next) => {
+  async (req: Request, res: Response, next: NextFunction) => {
     try {
       const input = createProjectSchema.parse(req.body);
       const memberIds = new Set(input.memberIds ?? []);
@@ -136,7 +136,7 @@ router.post(
   }
 );
 
-router.patch("/:id", async (req, res, next) => {
+router.patch("/:id", async (req: Request, res: Response, next: NextFunction) => {
   try {
     await assertProjectAccess(req.user!, req.params.id, { requireManage: true });
     const input = updateProjectSchema.parse(req.body);
@@ -176,7 +176,7 @@ router.patch("/:id", async (req, res, next) => {
   }
 });
 
-router.delete("/:id", async (req, res, next) => {
+router.delete("/:id", async (req: Request, res: Response, next: NextFunction) => {
   try {
     await assertProjectAccess(req.user!, req.params.id, { requireManage: true });
     const project = await prisma.project.findUnique({ where: { id: req.params.id } });
@@ -189,7 +189,7 @@ router.delete("/:id", async (req, res, next) => {
   }
 });
 
-router.post("/:id/members", async (req, res, next) => {
+router.post("/:id/members", async (req: Request, res: Response, next: NextFunction) => {
   try {
     await assertProjectAccess(req.user!, req.params.id, { requireManage: true });
     const { userId } = projectMemberSchema.parse(req.body);
@@ -223,7 +223,7 @@ router.post("/:id/members", async (req, res, next) => {
   }
 });
 
-router.delete("/:id/members/:userId", async (req, res, next) => {
+router.delete("/:id/members/:userId", async (req: Request, res: Response, next: NextFunction) => {
   try {
     await assertProjectAccess(req.user!, req.params.id, { requireManage: true });
     const membership = await prisma.projectMember.findUnique({

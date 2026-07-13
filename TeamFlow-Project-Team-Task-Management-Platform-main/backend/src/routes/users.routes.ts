@@ -1,4 +1,4 @@
-import { Router } from "express";
+import { Router, Request, Response, NextFunction } from "express";
 import bcrypt from "bcryptjs";
 import { Role, UserStatus } from "@prisma/client";
 import { prisma } from "../lib/prisma";
@@ -15,7 +15,7 @@ router.use(authenticate);
 router.get(
   "/directory",
   authorize(Role.ADMIN, Role.PROJECT_MANAGER),
-  async (_req, res, next) => {
+  async (_req: Request, res: Response, next: NextFunction) => {
     try {
       const users = await prisma.user.findMany({
         where: { status: UserStatus.ACTIVE },
@@ -37,7 +37,7 @@ router.get(
 
 router.use(authorize(Role.ADMIN));
 
-router.get("/", async (_req, res, next) => {
+router.get("/", async (_req: Request, res: Response, next: NextFunction) => {
   try {
     const users = await prisma.user.findMany({
       orderBy: { createdAt: "desc" },
@@ -48,7 +48,7 @@ router.get("/", async (_req, res, next) => {
   }
 });
 
-router.get("/:id", async (req, res, next) => {
+router.get("/:id", async (req: Request, res: Response, next: NextFunction) => {
   try {
     const user = await prisma.user.findUnique({ where: { id: req.params.id } });
     if (!user) throw new AppError("User not found", 404);
@@ -58,7 +58,7 @@ router.get("/:id", async (req, res, next) => {
   }
 });
 
-router.post("/", async (req, res, next) => {
+router.post("/", async (req: Request, res: Response, next: NextFunction) => {
   try {
     const input = createUserSchema.parse(req.body);
     const existing = await prisma.user.findUnique({ where: { email: input.email } });
@@ -79,7 +79,7 @@ router.post("/", async (req, res, next) => {
   }
 });
 
-router.patch("/:id", async (req, res, next) => {
+router.patch("/:id", async (req: Request, res: Response, next: NextFunction) => {
   try {
     const input = updateUserSchema.parse(req.body);
     const existing = await prisma.user.findUnique({ where: { id: req.params.id } });
@@ -106,7 +106,7 @@ router.patch("/:id", async (req, res, next) => {
   }
 });
 
-router.delete("/:id", async (req, res, next) => {
+router.delete("/:id", async (req: Request, res: Response, next: NextFunction) => {
   try {
     if (req.params.id === req.user!.id) {
       throw new AppError("Cannot delete your own account", 400);
