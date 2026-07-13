@@ -9,6 +9,11 @@ TeamFlow is a web‑based platform that streamlines project and task management 
 - **Database**: MySQL accessed via Prisma ORM
 - **Containerization (optional)**: Docker & Docker‑Compose
 
+## Deployment & Live Demo
+- **Live Frontend Application**: [TeamFlow Client](https://project-and-team-task-management-platform-gowshi9s-projects.vercel.app)
+- **Live Backend API Service**: [TeamFlow API Server](https://project-and-team-task-management-ylz7.onrender.com)
+- **Project Demonstration Video**: [Microsoft OneDrive Screen Recording](https://1drv.ms/v/c/4277e0b4189b75c4/IQDTw9mTj8ziSqOOxfULZhj7AWOUufnKXs11j0Ki4ojQ54o?e=nqTzwJ)
+
 ## Key Features by Role
 ### Administrator
 - Manage user accounts and assign roles
