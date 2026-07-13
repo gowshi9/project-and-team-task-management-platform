@@ -23,6 +23,10 @@ export function createApp() {
   app.use(express.json({ limit: "1mb" }));
   app.use(morgan(env.NODE_ENV === "production" ? "combined" : "dev"));
 
+  app.get("/", (_req, res) => {
+    res.json({ success: true, message: "TeamFlow Management API Server is running live" });
+  });
+
   app.get("/health", (_req, res) => {
     res.json({ success: true, message: "TeamFlow API is healthy" });
   });
